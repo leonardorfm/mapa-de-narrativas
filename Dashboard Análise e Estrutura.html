@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html>
+
+<head><script>document.cookie = "session_token=eyJhbGciOiJFUzI1NiIsImtpZCI6ImM3ZTRmZTQ0LWJjYjEtNDZjOS1iYmQ5LWI4YWJkYmEyNjVhYSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3ppbG9hYWh2bXdpenRjY3Fhcmh4LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJkY2Y4ZTZlMS1jNGVkLTQ2NGYtYmNjMi01MWNiYzFhNjM1ZGYiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzgzMDAwMzY5LCJpYXQiOjE3ODI5OTY3NjksImVtYWlsIjoibGVvbmFyZG9yZm1AZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJnb29nbGUiLCJwcm92aWRlcnMiOlsiZ29vZ2xlIl19LCJ1c2VyX21ldGFkYXRhIjp7ImF2YXRhcl91cmwiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJWHJ1dDBrWHp2S1RZZ3IxQ3dMUFRaQUNSYkNuV3VTVE82eUlXck9USGh5SVU3SXVpMDJ3PXM5Ni1jIiwiZW1haWwiOiJsZW9uYXJkb3JmbUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZnVsbF9uYW1lIjoiTGVvbmFyZG8gTWFycXVlcyIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsIm5hbWUiOiJMZW9uYXJkbyBNYXJxdWVzIiwicGhvbmVfdmVyaWZpZWQiOmZhbHNlLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSVhydXQwa1h6dktUWWdyMUN3TFBUWkFDUmJDbld1U1RPNnlJV3JPVEhoeUlVN0l1aTAydz1zOTYtYyIsInByb3ZpZGVyX2lkIjoiMTEyOTk5MDgwNTAxNTkzNDU0MDg3Iiwic3ViIjoiMTEyOTk5MDgwNTAxNTkzNDU0MDg3In0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoib2F1dGgiLCJ0aW1lc3RhbXAiOjE3NzU4MjM1NDV9XSwic2Vzc2lvbl9pZCI6IjU2MzliZWQ1LTcyYjItNGMxYS05ZDA4LWQ0ZDNkNDY0Njc4MyIsImlzX2Fub255bW91cyI6ZmFsc2V9.2-xTA7vtY_juNVQiD7UQvu85VJytE0JBAEVZfSwOLxWcfemHkmveJZIM573pC1UmxsO3ct1C1u-ROMWO1hT90g; path=/api/threads/152645c9-7161-4098-abde-a53b29b1d20e/artifacts/; SameSite=None; Secure; max-age=3600";</script>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Análise de Narrativas - Caso InovaTech</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-tertiary: #334155;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --accent-primary: #3b82f6;
+      --accent-secondary: #8b5cf6;
+      --accent-tertiary: #10b981;
+      --accent-quaternary: #f59e0b;
+      --accent-danger: #ef4444;
+      --border-color: #475569;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .case-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-primary));
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tab {
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .tab:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+
+    .tab.active {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+      border-color: transparent;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .card-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Lists */
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-icon {
+      color: var(--accent-tertiary);
+      flex-shrink: 0;
+    }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tag-high { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+    .tag-medium { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+    .tag-low { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+    .tag-info { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+
+    /* Section Headers */
+    .section-header {
+      margin: 2rem 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-primary);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Highlight boxes */
+    .highlight-box {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid var(--accent-primary);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .warning-box {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--accent-danger);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .success-box {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--accent-tertiary);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    /* ===== SCATTER PLOT STYLES ===== */
+    #scatter-container {
+      width: 100%;
+      height: 600px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scatter-point {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .scatter-point:hover {
+      stroke: white;
+      stroke-width: 3px;
+      filter: brightness(1.3);
+    }
+
+    /* Tooltip estilo do arquivo de referência */
+    .scatter-tooltip {
+      position: fixed;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      max-width: 400px;
+      font-size: 0.875rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 10000;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      color: #111827;
+      line-height: 1.5;
+    }
+
+    .scatter-tooltip.visible {
+      opacity: 1;
+    }
+
+    .scatter-tooltip strong {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .scatter-tooltip .cluster-label {
+      color: #674ea7;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .scatter-tooltip .narrative-text {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .scatter-tooltip .narrative-source {
+      color: #6b7280;
+      font-size: 0.8rem;
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+
+    .scatter-tooltip .confidence {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 8px;
+    }
+
+    .legend-container {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      max-width: 280px;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .legend-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .legend-item:hover {
+      opacity: 0.8;
+    }
+
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .legend-text {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .legend-item:hover .legend-text {
+      color: var(--text-primary);
+    }
+
+    /* ===== COLLAPSIBLE CLUSTERS ===== */
+    .cluster-section {
+      margin-bottom: 1rem;
+    }
+
+    .cluster-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cluster-header:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .cluster-header.active {
+      border-radius: 8px 8px 0 0;
+      border-bottom-color: transparent;
+    }
+
+    .cluster-title-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cluster-color-indicator {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cluster-title-text h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .cluster-title-text span {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .cluster-toggle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      transition: transform 0.3s ease;
+    }
+
+    .cluster-toggle.expanded {
+      transform: rotate(180deg);
+    }
+
+    .cluster-content {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .cluster-content.expanded {
+      max-height: 5000px;
+      padding: 1.5rem;
+    }
+
+    .narrative-card {
+      background: var(--bg-tertiary);
+      border-left: 4px solid;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      border-radius: 0 8px 8px 0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .narrative-card:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow);
+    }
+
+    .narrative-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .narrative-text {
+      font-style: italic;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .narrative-source {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .narrative-id {
+      font-family: monospace;
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ===== MERMAID DIAGRAMS ===== */
+    .mermaid {
+      background: var(--bg-tertiary);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 400px;
+    }
+
+    .mermaid svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Loop cards */
+    .loop-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .loop-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .loop-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .loop-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .loop-type {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: auto;
+    }
+
+    .loop-type.reinforcing {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+    }
+
+    .loop-type.balancing {
+      background: rgba(59, 130, 246, 0.2);
+      color: #3b82f6;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      padding: 2rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tabs {
+        flex-direction: column;
+      }
+      
+      .tab {
+        text-align: center;
+      }
+
+      #scatter-container {
+        height: 400px;
+      }
+
+      .legend-container {
+        position: relative;
+        right: auto;
+        top: auto;
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+      }
+
+      .scatter-tooltip {
+        max-width: 300px;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--bg-tertiary);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--border-color);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🔬 Análise de Narrativas</h1>
+      <p class="subtitle">Caso InovaTech: Transformação Ágil e os Desafios da Mudança Organizacional</p>
+      <span class="case-badge">📚 CASO DIDÁTICO FICTÍCIO</span>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('sintese')">📊 Síntese Geral</div>
+      <div class="tab" onclick="showTab('contexto')">📝 Contexto</div>
+      <div class="tab" onclick="showTab('narrativas')">💬 Narrativas</div>
+      <div class="tab" onclick="showTab('pressupostos')">🧠 Pressupostos</div>
+      <div class="tab" onclick="showTab('ganhos')">👥 Ganhos Ocultos</div>
+      <div class="tab" onclick="showTab('fatores')">🏗️ Fatores Estruturantes</div>
+      <div class="tab" onclick="showTab('loops')">🔄 Loops Causais</div>
+    </div>
+
+    <!-- Síntese Geral -->
+    <div id="sintese" class="tab-content active">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">32</div>
+          <div class="stat-label">Entrevistas Realizadas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">11</div>
+          <div class="stat-label">Clusters Identificados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">7</div>
+          <div class="stat-label">Pressupostos Ocultos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">7</div>
+          <div class="stat-label">Loops Causais</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(59, 130, 246, 0.2);">🎯</div>
+          <div>
+            <div class="card-title">A História</div>
+          </div>
+        </div>
+        <p>A <strong>InovaTech</strong> é uma empresa de tecnologia em crescimento que enfrenta o clássico dilema da "vítima do próprio sucesso". Com 15 anos de mercado e 450 colaboradores, a empresa triplicou de tamanho em 5 anos, mas sua capacidade organizacional não acompanhou o crescimento.</p>
+        <br>
+        <p>A diretoria identificou corretamente os sintomas: ciclo de inovação lento, turnover de 35%, satisfação em queda. A resposta foi lançar uma "Transformação Ágil" com metas ambiciosas. O problema: a iniciativa focou nos sintomas, não nas causas sistêmicas.</p>
+      </div>
+    </div>
+
+    <!-- Contexto -->
+    <div id="contexto" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(59, 130, 246, 0.2);">🏢</div>
+          <div>
+            <div class="card-title">Sobre a Empresa</div>
+          </div>
+        </div>
+        <p><strong>InovaTech</strong> é uma empresa de tecnologia com 15 anos de mercado, especializada em soluções de software para gestão da cadeia de suprimentos. Com aproximadamente 450 colaboradores distribuídos em 3 escritórios (São Paulo, Belo Horizonte e remoto), a empresa passou por um crescimento acelerado nos últimos 5 anos, triplicando seu faturamento.</p>
+      </div>
+    </div>
+
+    <!-- Narrativas com Scatter Plot e Clusters Expansíveis -->
+    <div id="narrativas" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(139, 92, 246, 0.2);">🗺️</div>
+          <div>
+            <div class="card-title">Mapa de Narrativas Clusterizadas</div>
+            <div class="card-subtitle">Visualização UMAP - Proximidade semântica entre narrativas</div>
+          </div>
+        </div>
+        <p>Este mapa mostra como as narrativas se agrupam em clusters temáticos baseados em <strong>similaridade semântica</strong>. Cada ponto representa uma narrativa. O <strong>tamanho do ponto</strong> indica o nível de confiança da atribuição ao cluster. Clique em um ponto para ver a narrativa completa.</p>
+      </div>
+
+      <div id="scatter-container">
+        <div class="legend-container" id="scatter-legend"></div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>💡 Como Interpretar o Mapa</strong><br><br>
+        • <strong>Proximidade espacial</strong>: Narrativas próximas compartilham conteúdo semântico similar<br>
+        • <strong>Cores</strong>: Cada cor representa um cluster temático identificado automaticamente<br>
+        • <strong>Tamanho dos pontos</strong>: Maior = maior confiança na atribuição ao cluster<br>
+        • <strong>Interatividade</strong>: Passe o mouse para preview, clique para ver narrativa completa<br>
+        • <strong>Zoom</strong>: Use o scroll do mouse para ampliar áreas específicas
+      </div>
+
+      <div class="section-header">
+        <div class="section-title">📖 Narrativas por Cluster</div>
+      </div>
+
+      <div id="clusters-container">
+        <!-- Clusters serão inseridos aqui via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Pressupostos -->
+    <div id="pressupostos" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(139, 92, 246, 0.2);">🧠</div>
+          <div>
+            <div class="card-title">O que são Pressupostos?</div>
+          </div>
+        </div>
+        <p>Pressupostos são as <strong>crenças profundas</strong>, muitas vezes não ditas, que sustentam as práticas organizacionais. Eles funcionam como "verdades invisíveis" que moldam comportamentos e decisões. Identificá-los é essencial porque mudanças superficiais falham quando os pressupostos subjacentes permanecem intactos.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Pressuposto 1: "Controle = Eficiência"</h4>
+        <p><strong>Manifestação:</strong> Micromanagement generalizado, necessidade de aprovações em múltiplos níveis, planilhas de controle de horas detalhadas.</p>
+        <blockquote style="margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--accent-secondary);">Acredita-se que quanto mais controle exercido sobre os colaboradores, mais produtivos eles serão. A autonomia é vista como risco, não como alavanca.</blockquote>
+        <p style="color: var(--text-secondary);"><strong>Impacto:</strong> Cria cultura de dependência e desresponsabilização. O controle excessivo gera o efeito oposto: desengajamento, criatividade suprimida e turnover.</p>
+        <p style="color: var(--accent-danger); margin-top: 0.5rem;"><strong>Contradição:</strong> A empresa quer "agilidade" e "inovação", mas mantém estruturas que impedem exatamente isso.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Pressuposto 2: "Informação = Poder"</h4>
+        <p><strong>Manifestação:</strong> Informação privilegiada para quem tem contato, reuniões informais no corredor vs. reuniões oficiais, silos que competem por recursos.</p>
+        <blockquote style="margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--accent-secondary);">Acredita-se que quem detém informação detém poder. Compartilhar informação amplamente é visto como perda de vantagem competitiva interna.</blockquote>
+        <p style="color: var(--text-secondary);"><strong>Impacto:</strong> Fortalece hierarquia e cria economia política baseada em acesso. Pessoas gastam mais energia gerenciando informação do que gerando valor.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Pressuposto 3: "Erro = Falha Pessoal"</h4>
+        <p><strong>Manifestação:</strong> Crucificação pública por erros, cultura de medo que inibe risco, necessidade de ser "político" em vez de honesto.</p>
+        <blockquote style="margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--accent-secondary);">Acredita-se que erros são evidência de incompetência individual, não de complexidade sistêmica ou necessidade de aprendizado.</blockquote>
+        <p style="color: var(--text-secondary);"><strong>Impacto:</strong> Cria cultura defensiva onde pessoas escondem problemas. A organização perde capacidade de aprender com erros. A inovação morre.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Pressuposto 4: "Processo = Qualidade"</h4>
+        <p><strong>Manifestação:</strong> Burocracia excessiva para aprovações, seguir processo mesmo quando não faz sentido, sistemas que dificultam mais do que ajudam.</p>
+        <blockquote style="margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--accent-secondary);">Acredita-se que seguir processos garante qualidade e reduz riscos. Processos são vistos como proteção, não como meio para um fim.</blockquote>
+        <p style="color: var(--text-secondary);"><strong>Impacto:</strong> Gera burocracia que paralisa a ação. Quando o processo se torna mais importante que o resultado, a organização perde agilidade.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Pressuposto 5: "Liderança = Hierarquia"</h4>
+        <p><strong>Manifestação:</strong> Decisões centralizadas no topo, desalinhamento entre diretores, discurso bonito vs. prática real.</p>
+        <blockquote style="margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--accent-secondary);">Acredita-se que liderança é função do cargo, não da influência. Quem está no topo sabe melhor; quem está embaixo executa.</blockquote>
+        <p style="color: var(--text-secondary);"><strong>Impacto:</strong> Cria organização dependente de decisões de topo, lenta para reagir e desconectada da realidade operacional.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Pressuposto 6: "Custo = Investimento"</h4>
+        <p><strong>Manifestação:</strong> Corte de orçamento de treinamento, falta de investimento em infraestrutura, manutenção de sistemas legados por "economia".</p>
+        <blockquote style="margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--accent-secondary);">Acredita-se que reduzir custos imediatos é sempre bom, mesmo que gere custos maiores no médio/longo prazo.</blockquote>
+        <p style="color: var(--text-secondary);"><strong>Impacto:</strong> Gera subinvestimento crônico em capacidades essenciais. A organização vive no curto prazo, acumulando "débito técnico".</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">Pressuposto 7: "Presença = Produtividade"</h4>
+        <p><strong>Manifestação:</strong> Home office flexível que não é flexível, cultura de horas extras invisíveis, expectativa de disponibilidade constante.</p>
+        <blockquote style="margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--accent-secondary);">Acredita-se que tempo de trabalho é proxy para produtividade. Quem está mais tempo na empresa trabalha mais.</blockquote>
+        <p style="color: var(--text-secondary);"><strong>Impacto:</strong> Confunde atividade com resultado. Pessoas aprendem a parecer ocupadas em vez de serem efetivas. Burnout endêmico.</p>
+      </div>
+
+      <div class="warning-box">
+        <strong>⚠️ Implicação Crítica</strong><br><br>
+        Qualquer iniciativa de transformação que não aborde esses pressupostos está fadada ao insucesso. Não adianta implementar "squads ágeis" se o pressuposto do controle permanecer, ou criar "canais de comunicação abertos" se informação = poder.
+      </div>
+    </div>
+
+    <!-- Ganhos Ocultos -->
+    <div id="ganhos" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(239, 68, 68, 0.2);">👥</div>
+          <div>
+            <div class="card-title">O que são Ganhos Ocultos?</div>
+          </div>
+        </div>
+        <p>Ganhos ocultos são os <strong>benefícios que certos atores ou grupos obtêm da manutenção do status quo</strong>, mesmo que o sistema como um todo esteja disfuncional. Identificá-los é crucial porque explica por que mudanças "óbvias" e "necessárias" encontram resistência: alguém está se beneficiando da forma como as coisas são.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h4 style="color: #ef4444; margin-bottom: 1rem;">🔐 Gatekeepers de Informação</h4>
+          <p><strong>Quem se beneficia:</strong> Gerentes e coordenadores que controlam o fluxo de informação; diretores com acesso privilegiado; "veteranos" que conhecem os atalhos.</p>
+          <p style="margin-top: 0.5rem;"><strong>Como se beneficia:</strong> Quem controla a informação controla as decisões. Tornam-se indispensáveis, são consultados, procurados, valorizados.</p>
+          <p style="margin-top: 0.5rem; color: var(--text-secondary);"><strong>Por que resistem:</strong> Transparência real ameaça seu poder. A "transformação digital" é ameaça existencial.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="color: #f59e0b; margin-bottom: 1rem;">📋 Proteção da Burocracia</h4>
+          <p><strong>Quem se beneficia:</strong> Gestores de médio nível que usam processos como escudo; áreas de compliance; pessoas que preferem "seguir o processo".</p>
+          <p style="margin-top: 0.5rem;"><strong>Como se beneficia:</strong> "Eu só segui o processo" é proteção. Quando algo dá errado, a culpa é do processo, não da pessoa.</p>
+          <p style="margin-top: 0.5rem; color: var(--text-secondary);"><strong>Por que resistem:</strong> Desburocratização significa tomar decisões — e assumir responsabilidade por elas.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="color: #8b5cf6; margin-bottom: 1rem;">🏰 Conforto dos Silos</h4>
+          <p><strong>Quem se beneficia:</strong> Líderes de área que controlam seus feudos; equipes que preferem trabalhar isoladas.</p>
+          <p style="margin-top: 0.5rem;"><strong>Como se beneficia:</strong> Silos oferecem controle territorial. O líder é "rei" no seu domínio. Não precisa negociar nem compromissar.</p>
+          <p style="margin-top: 0.5rem; color: var(--text-secondary);"><strong>Por que resistem:</strong> Colaboração real exige ceder controle, compartilhar recursos, e aceitar métricas coletivas.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="color: #06b6d4; margin-bottom: 1rem;">💾 Estabilidade dos Sistemas Legados</h4>
+          <p><strong>Quem se beneficia:</strong> Profissionais de TI que mantêm sistemas antigos; fornecedores legados com contratos longos.</p>
+          <p style="margin-top: 0.5rem;"><strong>Como se beneficia:</strong> Sistemas legados são conhecidos e controláveis. Quem os mantém tem emprego garantido (só eles entendem).</p>
+          <p style="margin-top: 0.5rem; color: var(--text-secondary);"><strong>Por que resistem:</strong> Modernização é disruptiva, cara e arrisca. Quem é especialista nos sistemas antigos vê expertise desvalorizada.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="color: #f97316; margin-bottom: 1rem;">👔 Privilégio da Alta Liderança</h4>
+          <p><strong>Quem se beneficia:</strong> C-level e diretores que mantêm controle centralizado; conselheiros que priorizam resultados de curto prazo.</p>
+          <p style="margin-top: 0.5rem;"><strong>Como se beneficia:</strong> Centralização mantém o poder onde está. Decisões importantes exigem aprovação de quem já tem poder.</p>
+          <p style="margin-top: 0.5rem; color: var(--text-secondary);"><strong>Por que resistem:</strong> Empoderamento real significa compartilhar poder. Admitir que a estratégia atual falhou é arriscado.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="color: #10b981; margin-bottom: 1rem;">🛡️ Fuga de Responsabilidade</h4>
+          <p><strong>Quem se beneficia:</strong> Todos os níveis que usam a estrutura para escapar de accountability.</p>
+          <p style="margin-top: 0.5rem;"><strong>Como se beneficia:</strong> Quando a estrutura é suficientemente complexa, a responsabilidade se dissolve. "Eu só segui ordens", "A decisão não foi minha".</p>
+          <p style="margin-top: 0.5rem; color: var(--text-secondary);"><strong>Por que resistem:</strong> Clareza de responsabilidade significa que alguém será responsabilizado quando algo der errado.</p>
+        </div>
+      </div>
+
+      <div class="success-box">
+        <strong>💡 Insight Estratégico</strong><br><br>
+        A resistência à mudança nem sempre é irracional. Frequentemente, é <strong>muito racional</strong> — para quem se beneficia do status quo. A questão não é "como convencê-los", mas "como reconfigurar os incentivos para que a mudança seja racional para todos".
+      </div>
+    </div>
+
+    <!-- Fatores Estruturantes -->
+    <div id="fatores" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(16, 185, 129, 0.2);">🏗️</div>
+          <div>
+            <div class="card-title">O que são Fatores Estruturantes?</div>
+          </div>
+        </div>
+        <p>Fatores estruturantes são os <strong>elementos do design organizacional</strong> — sistemas, processos, estruturas de poder, arquitetura de informação — que moldam comportamentos de forma previsível. Diferente de "cultura" (que é efêmera) ou "mindset" (que é individual), fatores estruturantes são tangíveis e modificáveis. Eles são a "máquina" que produz os resultados que vemos.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">1. Arquitetura de Sistemas Fragmentada</h4>
+        <p>A InovaTech opera com uma arquitetura de sistemas que cresceu organicamente sem planejamento integrado. Cada área adotou soluções pontuais para suas necessidades imediatas.</p>
+        <ul class="feature-list" style="margin-top: 0.5rem;">
+          <li><span class="feature-icon">•</span><span>CRM do comercial não integrado com sistema de produto</span></li>
+          <li><span class="feature-icon">•</span><span>RH usa planilhas; finanças usam ERP; operações usam sistema customizado</span></li>
+          <li><span class="feature-icon">•</span><span>Dados do cliente dispersos em 5+ sistemas diferentes</span></li>
+          <li><span class="feature-icon">•</span><span>Relatórios consolidados exigem exportação manual e manipulação em Excel</span></li>
+        </ul>
+        <p style="margin-top: 1rem; color: var(--text-secondary);"><strong>Impacto comportamental:</strong> Quando sistemas não conversam, pessoas não conversam. A fragmentação técnica impõe fragmentação social.</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-tertiary);"><strong>Intervenção:</strong> Mapeamento completo da arquitetura, definição de sistema-fonte para cada dado, projeto de integração gradual.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">2. Estrutura de Incentivos Desalinhada</h4>
+        <p>O sistema de remuneração variável e avaliação de desempenho recompensa comportamentos individualistas e de curto prazo.</p>
+        <ul class="feature-list" style="margin-top: 0.5rem;">
+          <li><span class="feature-icon">•</span><span>Bônus por área, não por resultado conjunto</span></li>
+          <li><span class="feature-icon">•</span><span>Metas trimestrais desconectadas de objetivos de longo prazo</span></li>
+          <li><span class="feature-icon">•</span><span>Avaliação focada em entregáveis, não em colaboração</span></li>
+          <li><span class="feature-icon">•</span><span>Reconhecimento individual, não de equipe</span></li>
+        </ul>
+        <p style="margin-top: 1rem; color: var(--text-secondary);"><strong>Impacto comportamental:</strong> Quando incentivos são individuais, comportamentos são individuais. O sistema paga por competição, não por colaboração.</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-tertiary);"><strong>Intervenção:</strong> Redesenho do sistema de remuneração com componente coletivo, métricas que só são atingíveis com cooperação.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">3. Arquitetura de Aprovações em Cascata</h4>
+        <p>A estrutura de tomada de decisão exige múltiplas aprovações em série, criando gargalos e desresponsabilizando quem está na linha de frente.</p>
+        <ul class="feature-list" style="margin-top: 0.5rem;">
+          <li><span class="feature-icon">•</span><span>Aprovações necessárias em 3+ níveis hierárquicos</span></li>
+          <li><span class="feature-icon">•</span><span>Comitês com poder de veto sem poder de aprovação</span></li>
+          <li><span class="feature-icon">•</span><span>Decisões operacionais escaladas para diretoria</span></li>
+          <li><span class="feature-icon">•</span><span>Ausência de limites claros de autoridade</span></li>
+        </ul>
+        <p style="margin-top: 1rem; color: var(--text-secondary);"><strong>Impacto comportamental:</strong> Quando decisões simples exigem aprovação de múltiplos níveis: (1) tudo demora, e (2) ninguém se sente responsável.</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-tertiary);"><strong>Intervenção:</strong> Definição clara de "carteira" (limites de autoridade), eliminação de aprovações para decisões abaixo de certo valor.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">4. Estrutura de Comunicação em Silos</h4>
+        <p>A arquitetura de comunicação da organização reflete e reforça a estrutura departamental. Canais de comunicação são proprietários de áreas.</p>
+        <ul class="feature-list" style="margin-top: 0.5rem;">
+          <li><span class="feature-icon">•</span><span>Múltiplas ferramentas de comunicação (Slack, Teams, WhatsApp, email)</span></li>
+          <li><span class="feature-icon">•</span><span>Canais organizados por hierarquia, não por fluxo de trabalho</span></li>
+          <li><span class="feature-icon">•</span><span>Reuniões departamentais sem representação de áreas interdependentes</span></li>
+        </ul>
+        <p style="margin-top: 1rem; color: var(--text-secondary);"><strong>Impacto comportamental:</strong> Quando canais são fragmentados, a informação fica fragmentada. Pessoas desenvolvem "rotas alternativas" que excluem quem não está no circuito.</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-tertiary);"><strong>Intervenção:</strong> Consolidação em plataforma única, canais organizados por projeto/processo, documentação pública de decisões.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">5. Arquitetura de Carreira Vertical</h4>
+        <p>A estrutura de desenvolvimento de carreira só oferece progressão através de promoção hierárquica, não através de desenvolvimento de expertise.</p>
+        <ul class="feature-list" style="margin-top: 0.5rem;">
+          <li><span class="feature-icon">•</span><span>Único caminho de crescimento: gestão de pessoas</span></li>
+          <li><span class="feature-icon">•</span><span>Especialistas técnicos atingem teto salarial cedo</span></li>
+          <li><span class="feature-icon">•</span><span>Promoção implica em deixar de fazer o que se é bom</span></li>
+        </ul>
+        <p style="margin-top: 1rem; color: var(--text-secondary);"><strong>Impacto comportamental:</strong> Bons técnicos viram maus gestores. Técnicos seniores saem para empresas que valorizam expertise.</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-tertiary);"><strong>Intervenção:</strong> Criação de trilha de carreira técnica paralela à gerencial, com remuneração equivalente.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">6. Estrutura de Governança de Conflitos</h4>
+        <p>A organização não possui mecanismos estruturados para resolver conflitos entre áreas. Conflitos são "escalados" ou suprimidos.</p>
+        <p style="margin-top: 1rem; color: var(--text-secondary);"><strong>Impacto comportamental:</strong> Quando conflitos não têm canal de resolução, eles se acumulam. Pessoas desenvolvem ressentimentos ou desistem de colaborar.</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-tertiary);"><strong>Intervenção:</strong> Criação de "contratos de interface" entre áreas, mediação estruturada, métricas compartilhadas.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">7. Arquitetura de Informação Fechada</h4>
+        <p>O acesso a informação é restrito por padrão, não aberto. Sistemas de permissão criam "ilhas de informação".</p>
+        <p style="margin-top: 1rem; color: var(--text-secondary);"><strong>Impacto comportamental:</strong> Quando informação é poder, reter informação é reter poder. A arquitetura cria gatekeepers e desinformação.</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-tertiary);"><strong>Intervenção:</strong> Princípio de "aberto por padrão, fechado por exceção", dashboards públicos de métricas, transparência de decisões.</p>
+      </div>
+
+      <div class="warning-box">
+        <strong>⚠️ O que NÃO funciona:</strong><br><br>
+        • <strong>Treinamentos de "colaboração"</strong> quando sistemas recompensam competição<br>
+        • <strong>Workshops de "comunicação"</strong> quando arquitetura de informação é fechada<br>
+        • <strong>Palestras de "autonomia"</strong> quando estrutura exige aprovações em cascata<br>
+        • <strong>Campanhas de "transparência"</strong> quando acesso a dados é restrito
+      </div>
+
+      <div class="success-box">
+        <strong>✅ O que funciona:</strong><br><br>
+        • <strong>Redesenho de sistemas de incentivos</strong> antes de pedir comportamento diferente<br>
+        • <strong>Integração técnica</strong> antes de pedir colaboração<br>
+        • <strong>Descentralização de decisões</strong> antes de pedir responsabilização<br>
+        • <strong>Abertura de informação</strong> antes de pedir alinhamento
+      </div>
+    </div>
+
+    <!-- Loops Causais -->
+    <div id="loops" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(139, 92, 246, 0.2);">🔄</div>
+          <div>
+            <div class="card-title">O que são Loops Causais?</div>
+          </div>
+        </div>
+        <p>Loops causais são diagramas que mostram <strong>como variáveis se influenciam mutuamente</strong> ao longo do tempo. Eles revelam padrões de comportamento sistêmico — ciclos de <span style="color: #ef4444;">reforço</span> (que amplificam) e ciclos de <span style="color: #3b82f6;">balanceamento</span> (que estabilizam ou limitam). Entender os loops ajuda a ver por que intervenções simples frequentemente falham: elas ignoram as interconexões.</p>
+      </div>
+
+      <!-- Loop 1 -->
+      <div class="loop-card">
+        <div class="loop-header">
+          <div class="loop-number" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">1</div>
+          <div class="loop-title">Ciclo da Perda de Talentos</div>
+          <div class="loop-type reinforcing">🔴 REFORÇO</div>
+        </div>
+        <div class="mermaid">
+flowchart TD
+    A["Carga de Trabalho dos Remanescentes"] --> B["Burnout e Insatisfação"]
+    B --> C["Pedidos de Demissão"]
+    C --> D["Perda de Talentos"]
+    D --> E["Conhecimento Institucional Perdido"]
+    E --> F["Qualidade das Entregas Cai"]
+    F --> G["Pressão por Resultados"]
+    G --> A
+    D --> A
+
+    style A fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style B fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style C fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style D fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style E fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style F fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style G fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+        </div>
+        <div class="highlight-box">
+          <strong>📖 Descrição:</strong> Quando talentos saem, a carga aumenta para quem fica → burnout → mais saídas. Conhecimento perdido reduz qualidade → mais pressão → ciclo se amplifica.
+        </div>
+        <div class="success-box">
+          <strong>🎯 Intervenção:</strong> Quebrar o loop reduzindo carga de trabalho (contratação planejada), não com "engajamento" ou "resiliência".
+        </div>
+      </div>
+
+      <!-- Loop 2 -->
+      <div class="loop-card">
+        <div class="loop-header">
+          <div class="loop-number" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">2</div>
+          <div class="loop-title">Ciclo do Medo e da Estagnação</div>
+          <div class="loop-type reinforcing">🔴 REFORÇO</div>
+        </div>
+        <div class="mermaid">
+flowchart TD
+    A["Cultura de Medo de Errar"] --> B["Evitação de Riscos"]
+    B --> C["Inovação Estagnada"]
+    C --> D["Produtos Obsoletos"]
+    D --> E["Perda de Clientes"]
+    E --> F["Queda de Receita"]
+    F --> G["Corte de Investimentos"]
+    G --> H["Menos Recursos para Inovação"]
+    H --> C
+    A --> I["Ocultação de Problemas"]
+    I --> J["Problemas Crescem"]
+    J --> F
+
+    style A fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style B fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style C fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style D fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style E fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style F fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style G fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style H fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style I fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style J fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+        </div>
+        <div class="highlight-box">
+          <strong>📖 Descrição:</strong> Medo de errar → evitação de riscos → estagnação → produtos obsoletos → perda de clientes → cortes → menos inovação.
+        </div>
+        <div class="success-box">
+          <strong>🎯 Intervenção:</strong> Mudar relação com erro (aprendizado vs. punição). Investir em inovação mesmo quando receita cai.
+        </div>
+      </div>
+
+      <!-- Loop 3 -->
+      <div class="loop-card">
+        <div class="loop-header">
+          <div class="loop-number" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">3</div>
+          <div class="loop-title">Ciclo da Burocracia Defensiva</div>
+          <div class="loop-type reinforcing">🔴 REFORÇO</div>
+        </div>
+        <div class="mermaid">
+flowchart TD
+    A["Medo de Responsabilização"] --> B["Criação de Processos"]
+    B --> C["Burocracia Crescente"]
+    C --> D["Lentidão nas Decisões"]
+    D --> E["Problemas Acumulados"]
+    E --> F["Culpa sem Responsável"]
+    F --> G["Nova Rodada de Processos"]
+    G --> B
+    C --> H["Desresponsabilização Individual"]
+    H --> A
+
+    style A fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style B fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style C fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style D fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style E fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style F fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style G fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style H fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+        </div>
+        <div class="highlight-box">
+          <strong>📖 Descrição:</strong> Medo → criação de processos → burocracia → lentidão → problemas acumulam → "todos seguiram o processo" → mais processos.
+        </div>
+        <div class="success-box">
+          <strong>🎯 Intervenção:</strong> Clareza de accountability com autoridade correspondente. "Seguir o processo" não é defesa aceitável para resultados ruins.
+        </div>
+      </div>
+
+      <!-- Loop 4 -->
+      <div class="loop-card">
+        <div class="loop-header">
+          <div class="loop-number" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">4</div>
+          <div class="loop-title">Ciclo dos Silos Autorreforçados</div>
+          <div class="loop-type reinforcing">🔴 REFORÇO</div>
+        </div>
+        <div class="mermaid">
+flowchart TD
+    A["Silos Organizacionais"] --> B["Falta de Colaboração"]
+    B --> C["Resultados Ruins"]
+    C --> D["Busca por Culpados"]
+    D --> E["Culpa em Outras Áreas"]
+    E --> F["Desconfiança Crescente"]
+    F --> G["Menos Colaboração"]
+    G --> B
+    F --> A
+    C --> H["Corte de Recursos"]
+    H --> I["Competição por Orçamento"]
+    I --> E
+
+    style A fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style B fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style C fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style D fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style E fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style F fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style G fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style H fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style I fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+        </div>
+        <div class="highlight-box">
+          <strong>📖 Descrição:</strong> Silos → falta de colaboração → resultados ruins → culpa em outras áreas → desconfiança → menos colaboração.
+        </div>
+        <div class="success-box">
+          <strong>🎯 Intervenção:</strong> Métricas compartilhadas que só são atingíveis com colaboração. Incentivos coletivos.
+        </div>
+      </div>
+
+      <!-- Loop 5 -->
+      <div class="loop-card">
+        <div class="loop-header">
+          <div class="loop-number" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">5</div>
+          <div class="loop-title">Ciclo da Centralização e da Lentidão</div>
+          <div class="loop-type balancing">🔵 BALANCEAMENTO</div>
+        </div>
+        <div class="mermaid">
+flowchart TD
+    A["Centralização de Decisões"] --> B["Gargalo no Topo"]
+    B --> C["Lentidão nas Decisões"]
+    C --> D["Problemas Acumulados"]
+    D --> E["Pressão sobre Liderança"]
+    E --> F["Delegação Forçada"]
+    F --> G["Decisões sem Alinhamento"]
+    G --> H["Resultados Inconsistentes"]
+    H --> I["Pedido de Mais Controle Central"]
+    I --> A
+
+    style A fill:#3b82f6,color:#fff,stroke:#fff,stroke-width:2px
+    style B fill:#60a5fa,color:#000,stroke:#fff,stroke-width:2px
+    style C fill:#93c5fd,color:#000,stroke:#fff,stroke-width:2px
+    style D fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style E fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style F fill:#3b82f6,color:#fff,stroke:#fff,stroke-width:2px
+    style G fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style H fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style I fill:#3b82f6,color:#fff,stroke:#fff,stroke-width:2px
+        </div>
+        <div class="highlight-box">
+          <strong>📖 Descrição:</strong> Centralização → gargalo → lentidão → problemas → pressão → delegação forçada → decisões desalinhadas → pedido de mais controle.
+        </div>
+        <div class="success-box">
+          <strong>🎯 Intervenção:</strong> Delegação estruturada com limites claros, não delegação por exaustão da liderança.
+        </div>
+      </div>
+
+      <!-- Loop 6 -->
+      <div class="loop-card">
+        <div class="loop-header">
+          <div class="loop-number" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">6</div>
+          <div class="loop-title">Ciclo do Curto Prazo</div>
+          <div class="loop-type reinforcing">🔴 REFORÇO</div>
+        </div>
+        <div class="mermaid">
+flowchart TD
+    A["Foco no Curto Prazo"] --> B["Subinvestimento em Capacidades"]
+    B --> C["Débito Técnico e Organizacional"]
+    C --> D["Problemas Crônicos"]
+    D --> E["Demanda por Soluções Rápidas"]
+    E --> A
+    D --> F["Crises Constantes"]
+    F --> G["Modo Sobrevivência"]
+    G --> H["Sem Tempo para Planejamento"]
+    H --> A
+
+    style A fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style B fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style C fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style D fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style E fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style F fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style G fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style H fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+        </div>
+        <div class="highlight-box">
+          <strong>📖 Descrição:</strong> Foco no curto prazo → subinvestimento → débito técnico → crises → modo sobrevivência → sem tempo para planejar.
+        </div>
+        <div class="success-box">
+          <strong>🎯 Intervenção:</strong> Investimento obrigatório em capacidades (20% rule). Métricas de longo prazo nos incentivos da liderança.
+        </div>
+      </div>
+
+      <!-- Loop 7 -->
+      <div class="loop-card">
+        <div class="loop-header">
+          <div class="loop-number" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">7</div>
+          <div class="loop-title">Ciclo da Desconfiança e do Controle</div>
+          <div class="loop-type reinforcing">🔴 REFORÇO</div>
+        </div>
+        <div class="mermaid">
+flowchart TD
+    A["Desconfiança na Capacidade das Pessoas"] --> B["Micromanagement e Controle"]
+    B --> C["Desengajamento e Passividade"]
+    C --> D["Resultados Medíocres"]
+    D --> E["Confirmação de que 'Precisam de Controle'"]
+    E --> A
+    B --> F["Perda de Autonomia"]
+    F --> G["Saída de Talentos Autônomos"]
+    G --> H["Média de Capacidade Cai"]
+    H --> D
+
+    style A fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style B fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style C fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style D fill:#f59e0b,color:#000,stroke:#fff,stroke-width:2px
+    style E fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+    style F fill:#f97316,color:#fff,stroke:#fff,stroke-width:2px
+    style G fill:#dc2626,color:#fff,stroke:#fff,stroke-width:2px
+    style H fill:#ef4444,color:#fff,stroke:#fff,stroke-width:2px
+        </div>
+        <div class="highlight-box">
+          <strong>📖 Descrição:</strong> Desconfiança → controle → desengajamento → resultados medianos → "confirma" que precisam de controle. Talentos autônomos saem, reduzindo capacidade média.
+        </div>
+        <div class="success-box">
+          <strong>🎯 Intervenção:</strong> Quebrar o ciclo confiando primeiro. Autonomia com accountability. Medir resultados, não atividades.
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <strong>⚠️ Por que intervenções pontuais falham:</strong><br><br>
+        Os problemas da InovaTech não são isolados — são <strong>interconectados</strong>. Intervenções em pontos isolados ignoram os loops de reforço que mantêm o sistema estável (embora disfuncional).<br><br>
+        A solução precisa atuar em <strong>múltiplos pontos simultaneamente</strong>: reduzir carga + melhorar retenção + investir em capacidades + mudar relação com erro.
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para narrativas -->
+  <div class="modal-overlay" id="narrative-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Narrativa</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Conteúdo será inserido via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Tooltip do scatter plot -->
+  <div class="scatter-tooltip" id="scatter-tooltip"></div>
+
+  <script>
+    // Initialize Mermaid
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#3b82f6',
+        primaryTextColor: '#f1f5f9',
+        primaryBorderColor: '#60a5fa',
+        lineColor: '#94a3b8',
+        secondaryColor: '#1e293b',
+        tertiaryColor: '#334155',
+        fontFamily: 'Inter, sans-serif'
+      },
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
+
+    // Tab switching
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+
+      if (tabName === 'narrativas' && !window.scatterInitialized) {
+        initScatterPlot();
+        renderClusters();
+        window.scatterInitialized = true;
+      }
+    }
+
+    // Dados completos das narrativas
+    const narrativesData = [
+      // Cluster 0: Silos e Competição
+      { id: 'N0-001', cluster: 0, text: "A gente tenta marcar reunião com o pessoal de Produto pra alinhar as prioridades, mas eles sempre dizem que estão ocupados. Daí a gente desenvolve baseado no que acha que é prioridade, e quando entrega, não é o que eles queriam. Aí vira um ping-pong de retrabalho. Já perdi as contas de quantas vezes isso aconteceu só esse ano.", source: "Desenvolvedor Sênior, 3 anos na empresa", prob: 0.92 },
+      { id: 'N0-002', cluster: 0, text: "O cliente me ligou desesperado porque recebeu duas propostas diferentes da nossa própria empresa — uma do time Comercial e outra do time de Produto. Ninguém se falou. Eu passei 3 horas tentando explicar que não era erro, era 'falta de alinhamento interno'. No fim, o cliente quase cancelou o contrato.", source: "Gerente de Contas, 5 anos na empresa", prob: 0.88 },
+      { id: 'N0-003', cluster: 0, text: "O sistema de bonificação é por área. Se o time de Vendas bate a meta, eles ganham, mesmo que a entrega técnica esteja uma bagunça. Se a Tecnologia entrega um produto excelente mas Vendas não vende, ninguém ganha. Resultado: cada um cuida do seu quintal e o cliente é quem sofre.", source: "Analista de Produto, 2 anos na empresa", prob: 0.85 },
+      { id: 'N0-004', cluster: 0, text: "Descobri que um projeto que eu estava planejando há dois meses já tinha sido arquivado pela diretoria. Ninguém me avisou. Eu só soube porque ouvi por acaso no elevador. É assim que funciona aqui: informação privilegiada pra quem tem contato, e o resto fica no escuro.", source: "Coordenador de Projetos, 4 anos na empresa", prob: 0.79 },
+      { id: 'N0-005', cluster: 0, text: "Cada área tem seu próprio relatório de status. O financeiro usa uma planilha, o comercial usa outra, a operação usa um dashboard diferente. Quando a diretoria pede uma visão consolidada, alguém passa o fim de semana juntando tudo manualmente. Já sugeririam um sistema único, mas cada área diz que o deles é melhor.", source: "Analista de Dados, 1 ano na empresa", prob: 0.76 },
+
+      // Cluster 1: Perda de Talentos
+      { id: 'N1-001', cluster: 1, text: "O João era o melhor desenvolvedor que a gente tinha. Ele pediu demissão semana passada. Quando perguntei por quê, ele disse: 'Estou cansado de ter ideias e ninguém ouvir. Aqui eu sou só um codificador, não um profissional'. Ele foi pra uma startup onde vai ganhar menos, mas vai poder inovar.", source: "Tech Lead, 6 anos na empresa", prob: 0.94 },
+      { id: 'N1-002', cluster: 1, text: "Trabalhei 18 meses num projeto crítico, entreguei antes do prazo, o cliente amou. Na avaliação de desempenho, meu gerente disse que eu 'precisava desenvolver mais visão estratégica'. Quando perguntei o que isso significa na prática, ele não soube explicar. Dois meses depois, contrataram alguém de fora pro cargo que eu queria.", source: "Analista de Negócios, 3 anos na empresa", prob: 0.91 },
+      { id: 'N1-003', cluster: 1, text: "A empresa anunciou que é 'flexível com home office', mas na prática, se você não aparece no escritório três vezes por semana, o gerente começa a fazer comentários. 'Ah, fulano não tá aqui de novo'. Aí você vai, fica 8 horas numa mesa fazendo videochamada com gente de outro estado. Qual o sentido?", source: "Desenvolvedor Pleno, 2 anos na empresa", prob: 0.87 },
+      { id: 'N1-004', cluster: 1, text: "A política oficial é 'não fazemos horas extras'. Na prática, todo mundo trabalha até tarde, final de semana, mas não registra porque 'não é bem-visto'. Eu já cansei de receber mensagem do meu chefe às 23h com 'só uma dúvida rápida'. Se eu não respondo, no dia seguinte ele faz cara feia.", source: "Designer UX, 2 anos na empresa", prob: 0.83 },
+      { id: 'N1-005', cluster: 1, text: "Quando entrei, prometeram que eu teria acesso a cursos e certificações. Faz um ano e meio, já pedi quatro vezes, sempre ouço 'vamos ver no próximo trimestre'. Meu amigo que foi pra concorrente disse que lá eles pagam qualquer curso que você queira fazer. Aqui, parece que quanto mais você sabe, mais eles temem que você saia.", source: "Especialista em Cloud, 1 ano na empresa", prob: 0.80 },
+      { id: 'N1-006', cluster: 1, text: "Antigamente, quando a gente entregava um projeto importante, tinha um email de parabéns, às vezes uma pizza pra equipe. Hoje, você entrega, e no dia seguinte já tem outra demanda urgente. Ninguém comemora mais nada. Parece que a gente é máquina, não gente.", source: "QA Analyst, 4 anos na empresa", prob: 0.78 },
+
+      // Cluster 2: Sistemas Legados
+      { id: 'N2-001', cluster: 2, text: "Pra abrir um chamado de suporte, eu preciso preencher cinco campos em três sistemas diferentes. O tempo que levo pra registrar o problema é maior que o tempo que levaria pra resolver sozinho. Aí o pessoal começa a contornar o processo, e quando dá problema, ninguém sabe o que aconteceu porque não tá registrado.", source: "Analista de Suporte, 3 anos na empresa", prob: 0.89 },
+      { id: 'N2-002', cluster: 2, text: "Temos uma planilha Excel que controla todo o pipeline de vendas. É a mesma planilha desde 2018. Já passou por 15 pessoas diferentes, cada uma colocou uma aba nova, uma fórmula diferente. Se alguém apagar uma linha errada, perdemos o histórico de três meses. Já pedi um CRM decente, mas 'não tá no orçamento'.", source: "Coordenador Comercial, 5 anos na empresa", prob: 0.86 },
+      { id: 'N2-003', cluster: 2, text: "Compramos um sistema novo de gestão de projetos ano passado. Custou uma fortuna. Só que ele não conversa com o sistema de RH, nem com o financeiro. Pra fazer um relatório simples de custo por projeto, eu exporto CSV de três lugares diferentes e junto no Excel. O 'sistema integrado' é eu, às 22h de sexta-feira.", source: "Gerente de Projetos, 4 anos na empresa", prob: 0.84 },
+      { id: 'N2-004', cluster: 2, text: "Precisei de acesso a um ambiente de produção pra resolver um bug crítico. Abri o chamado na segunda. Na quarta, me pediram autorização do meu gerente. Na sexta, do gerente dele. Na semana seguinte, do diretor. Quando consegui o acesso, já tinha passado 10 dias e o cliente tinha cancelado.", source: "Desenvolvedor Sênior, 2 anos na empresa", prob: 0.81 },
+      { id: 'N2-005', cluster: 2, text: "Descobrimos que o backup automático dos nossos sistemas não funcionava há 8 meses. Ninguém tinha testado. Quando precisamos recuperar dados, simplesmente não tinha. A diretoria queria saber 'quem foi o responsável'. O responsável é um sistema que ninguém mantém porque 'sempre funcionou'.", source: "Administrador de Sistemas, 6 anos na empresa", prob: 0.77 },
+
+      // Cluster 3: Desalinhamento de Liderança
+      { id: 'N3-001', cluster: 3, text: "Na segunda, a prioridade é 'foco no cliente existente'. Na quarta, é 'conquistar novos mercados'. Na sexta, é 'reduzir custos operacionais'. Minha equipe está completamente confusa. Não sabemos mais o que é importante. Parece que cada diretor está jogando seu próprio jogo.", source: "Gerente de Operações, 4 anos na empresa", prob: 0.93 },
+      { id: 'N3-002', cluster: 3, text: "Temos uma reunião semanal de 'alinhamento estratégico' com a diretoria. Dura duas horas. Cada diretor apresenta seus números, ninguém questiona, ninguém decide nada. No fim, cada um sai fazendo o que já ia fazer mesmo. É teatro. Eu parei de ir, mando meu coordenador.", source: "Diretor de Tecnologia, 3 anos na empresa", prob: 0.90 },
+      { id: 'N3-003', cluster: 3, text: "Anunciaram que vamos fazer 'transformação ágil'. Perguntei pro meu gerente o que isso significa pra minha equipe. Ele disse pra eu 'pesquisar no Google'. Perguntei pro diretor, ele disse que é 'uma jornada'. Perguntei se tem treinamento, orçamento, cronograma. Ninguém sabe. Mas já mudaram o nome de três departamentos.", source: "Coordenador de Desenvolvimento, 5 anos na empresa", prob: 0.88 },
+      { id: 'N3-004', cluster: 3, text: "O diretor comercial quer entregar funcionalidades novas a todo custo. O diretor de tecnologia quer estabilidade e qualidade. Eles brigam abertamente nas reuniões. A gente no operacional fica no meio, recebendo ordens contraditórias. Ontem o comercial me pediu uma coisa, hoje o de tecnologia proibiu. Eu faço o quê?", source: "Product Owner, 2 anos na empresa", prob: 0.85 },
+      { id: 'N3-005', cluster: 3, text: "Há três meses estamos esperando uma decisão sobre se vamos investir na modernização da plataforma legada ou não. Cada reunião adia pra próxima. Enquanto isso, o sistema fica mais obsoleto, os clientes reclamam mais, e os desenvolvedores bons vão embora. A indecisão é uma decisão, só que é a pior possível.", source: "Arquiteto de Software, 4 anos na empresa", prob: 0.82 },
+      { id: 'N3-006', cluster: 3, text: "Na assembleia anual, o CEO falou que 'nossa gente é nosso maior ativo'. Na semana seguinte, cortaram o orçamento de treinamento em 40% e congelaram as contratações. Quando questionei, ouvi que 'são medidas temporárias'. Já faz um ano. O discurso é lindo, mas quem trabalha aqui sabe que é só discurso.", source: "Analista de RH, 3 anos na empresa", prob: 0.79 },
+
+      // Cluster 4: Cultura de Medo
+      { id: 'N4-001', cluster: 4, text: "Aqui, se você erra, é crucificado. Teve um colega que lançou uma funcionalidade com um bug pequeno. Não afetou clientes, foi rápido de corrigir. Mas ele foi chamado na sala do diretor, teve que escrever um relatório de 'lições aprendidas', e agora ninguém quer trabalhar com ele. Resultado: ninguém quer arriscar mais nada.", source: "Desenvolvedor Pleno, 1 ano na empresa", prob: 0.91 },
+      { id: 'N4-002', cluster: 4, text: "Criamos um 'laboratório de inovação' há um ano. Até agora, nenhuma ideia saiu de lá. Por quê? Porque qualquer proposta precisa de aprovação de três diretores, análise de viabilidade financeira, e compliance jurídico. No fim, só passam ideias que já eram óbvias. Inovação segura é inovação que não inova.", source: "Inovation Lead, 2 anos na empresa", prob: 0.87 },
+      { id: 'N4-003', cluster: 4, text: "Antes de mandar qualquer email pra diretoria, eu mostro pra três colegas, reviso cinco vezes, durmo pensando se não fui muito direto. Aqui, você não pode ser honesto, tem que ser político. Já vi gente ser 'convidada a sair' porque 'não se encaixava na cultura' — na prática, porque falava demais.", source: "Analista de Negócios, 2 anos na empresa", prob: 0.84 },
+      { id: 'N4-004', cluster: 4, text: "A gente tem a reunião oficial, onde todo mundo concorda com tudo. Aí tem a reunião informal no corredor, onde a gente fala o que realmente pensa. Aí tem o WhatsApp do grupo, onde a gente reclama de quem falou na reunião informal. É exaustivo. Ninguém diz o que pensa, todo mundo joga o jogo.", source: "Gerente de Produto, 3 anos na empresa", prob: 0.80 },
+
+      // Cluster 5: Burocracia
+      { id: 'N5-001', cluster: 5, text: "Preciso de aprovação pra contratar um freelancer por 15 dias. Já estou esperando há três semanas. O projeto está parado. O cliente está insatisfeito. Mas 'o processo é o processo'. Quando a aprovação chegar, já não vai mais fazer sentido.", source: "Coordenador de Marketing, 2 anos na empresa", prob: 0.88 },
+      { id: 'N5-002', cluster: 5, text: "Criamos um 'comitê de inovação' pra avaliar novas ideias. São 7 pessoas, reunião quinzenal, cada uma pode vetar. Resultado: em um ano, aprovaram duas ideias. Uma delas era de um diretor. A outra foi arquivada depois. O comitê mata mais ideias do que a falta de recursos.", source: "Analista de Inovação, 1 ano na empresa", prob: 0.85 },
+      { id: 'N5-003', cluster: 5, text: "Pra fazer uma compra de R$ 500, eu preciso de três orçamentos, aprovação do gerente, do diretor, e assinatura do financeiro. Leva duas semanas. Aí o fornecedor aumentou o preço, e tem que começar tudo de novo. Já desisti de pedir coisas pequenas. Acabo comprando do meu bolso e pedindo reembolso, que demora dois meses.", source: "Analista de Comunicação, 3 anos na empresa", prob: 0.81 },
+
+      // Cluster 6: Falta de Autonomia
+      { id: 'N6-001', cluster: 6, text: "Meu gerente quer revisar cada linha de código antes de eu fazer commit. Ele não é técnico. Ele demora dois dias pra revisar. Quando dá problema, ele diz que 'deveria ter me avisado'. Se eu aviso antes, ele diz 'não me encha de detalhes'. Não tem como ganhar.", source: "Desenvolvedor Sênior, 2 anos na empresa", prob: 0.90 },
+      { id: 'N6-002', cluster: 6, text: "Preciso preencher uma planilha detalhando o que fiz a cada hora do dia. Se eu coloco 'reunião', ele pergunta 'qual reunião, com quem, sobre o quê'. Se eu coloco 'análise de requisitos', ele quer saber 'que requisitos, por que demorou tanto'. Me sinto na escola, não num emprego profissional.", source: "Analista de Sistemas, 1 ano na empresa", prob: 0.86 },
+      { id: 'N6-003', cluster: 6, text: "Sou responsável pelo resultado do meu projeto, mas não posso tomar nenhuma decisão sem aprovação. Quero mudar a cor de um botão? Preciso aprovação. Quero mudar o texto de um email? Aprovação. Quero convidar um cliente pra café? Aprovação. Como eu posso ser responsável se não tenho autoridade?", source: "Gerente de Contas, 4 anos na empresa", prob: 0.83 },
+
+      // Cluster 7: Comunicação Fragmentada
+      { id: 'N7-001', cluster: 7, text: "Temos email, Slack, Teams, WhatsApp, telefone, e ainda um 'sistema de comunicação interna' que ninguém usa. Uma informação importante pode estar em qualquer um deles. Eu perco 30 minutos por dia só procurando onde foi parar alguma coisa que alguém disse que me enviou.", source: "Analista de Projetos, 2 anos na empresa", prob: 0.87 },
+      { id: 'N7-002', cluster: 7, text: "Temos 12 horas de reunião por semana na minha equipe. Metade delas, eu não sei por que estou lá. As pessoas falam, falam, e no fim não decide nada. Aí mandam um email com o que 'foi acordado', que é diferente do que eu entendi. Aí tem outra reunião pra 'alinhamento'.", source: "Desenvolvedor Pleno, 1 ano na empresa", prob: 0.84 },
+      { id: 'N7-003', cluster: 7, text: "A diretoria anunciou uma mudança importante numa reunião geral. Eu estava de férias. Quando voltei, ninguém me contou. Descobri porque um cliente mencionou. Perguntei pro meu gerente, ele disse 'ah, achei que você soubesse'. Como eu ia saber se ninguém me disse?", source: "Especialista em UX, 3 anos na empresa", prob: 0.80 },
+
+      // Cluster 8: Expectativas Irrealistas
+      { id: 'N8-001', cluster: 8, text: "Me deram um projeto pra entregar em 3 meses. Fiz uma análise realista: precisava de 6. Me disseram 'seja ágil, seja criativo'. Entreguei em 4, com qualidade comprometida. Aí reclamaram da qualidade. Se eu entregasse em 6, reclamariam do prazo. O 'ágil' aqui significa 'faça impossível'.", source: "Tech Lead, 5 anos na empresa", prob: 0.89 },
+      { id: 'N8-002', cluster: 8, text: "Me colocaram pra liderar um projeto 'estratégico'. Orçamento: zero. Equipe: só eu. Prazo: 2 meses. Quando questionei, ouvi 'você é criativo, se vira'. Isso não é desafio, é descaso. Já estou procurando outro emprego.", source: "Coordenador de Inovação, 1 ano na empresa", prob: 0.86 },
+      { id: 'N8-003', cluster: 8, text: "Querem que a gente se torne 'mais ágil', 'mais inovador', 'mais digital'. Mas cortaram o orçamento de treinamento, não contratam ninguém novo, e mantêm os mesmos processos burocráticos. Como exatamente isso vai acontecer? Magia?", source: "Analista de Processos, 3 anos na empresa", prob: 0.82 },
+
+      // Cluster 9: Cliente Esquecido
+      { id: 'N9-001', cluster: 9, text: "Tive uma ideia de melhoria baseada em feedback de cliente. Quando apresentei, ouvi 'isso vai atrasar a entrega, deixa pra próxima versão'. A próxima versão nunca vem. O cliente cancelou o contrato. Aí a diretoria pergunta 'como deixamos isso acontecer?'. A gente avisou, só que ninguém ouviu.", source: "Product Manager, 4 anos na empresa", prob: 0.88 },
+      { id: 'N9-002', cluster: 9, text: "O cliente precisava de uma funcionalidade simples que resolveria um problema grave dele. Não estava no escopo do contrato. Demoramos 3 meses pra fazer uma aditiva contratual. O cliente foi pra concorrência. Perdemos R$ 2 milhões em receita anual. Mas 'o processo foi seguido'.", source: "Gerente de Contas, 6 anos na empresa", prob: 0.84 },
+
+      // Cluster 10: Falta de Visão de Longo Prazo
+      { id: 'N10-001', cluster: 10, text: "Temos código de 10 anos atrás que ninguém entende mais, mas 'ainda funciona'. A gente vai empilhando gambiarra em cima de gambiarra. Eu avisei que isso ia explodir. Explodiu. Agora precisamos de 6 meses pra refatorar o que podia ter sido feito em 2 semanas há dois anos.", source: "Arquiteto de Software, 5 anos na empresa", prob: 0.90 },
+      { id: 'N10-002', cluster: 10, text: "Aqui não se planeja além do próximo trimestre. Se uma ideia não traz retorno em 3 meses, não é prioridade. Resultado: ninguém investe em infraestrutura, em capacitação, em relacionamento de longo prazo. A gente vive apagando incêndio, nunca construindo pra durar.", source: "Diretor de Operações, 7 anos na empresa", prob: 0.87 }
+    ];
+
+    const clusterColors = {
+      0: '#ef4444', 1: '#f97316', 2: '#f59e0b', 3: '#84cc16', 4: '#10b981',
+      5: '#06b6d4', 6: '#3b82f6', 7: '#8b5cf6', 8: '#a855f7', 9: '#ec4899', 10: '#f43f5e'
+    };
+
+    const clusterNames = {
+      0: 'Silos e Competição',
+      1: 'Perda de Talentos',
+      2: 'Sistemas Legados',
+      3: 'Desalinhamento Liderança',
+      4: 'Cultura de Medo',
+      5: 'Burocracia',
+      6: 'Falta de Autonomia',
+      7: 'Comunicação Fragmentada',
+      8: 'Expectativas Irrealistas',
+      9: 'Cliente Esquecido',
+      10: 'Falta Visão Longo Prazo'
+    };
+
+    // Generate UMAP-like coordinates for scatter plot
+    function generateCoordinates() {
+      // Cluster centers (simulated UMAP projection)
+      const centers = {
+        0: { x: -2.5, y: 2 },      // Silos
+        1: { x: 3, y: 2.5 },       // Perda Talentos
+        2: { x: -1.5, y: -2.5 },    // Sistemas
+        3: { x: 3.5, y: -1 },       // Liderança
+        4: { x: 0.5, y: 3.5 },      // Medo
+        5: { x: -3, y: -0.5 },      // Burocracia
+        6: { x: 2, y: -3 },         // Autonomia
+        7: { x: -2, y: -3.5 },      // Comunicação
+        8: { x: 3, y: 4 },          // Expectativas
+        9: { x: 0.5, y: 0.5 },      // Cliente
+        10: { x: -4, y: 1.5 }       // Longo Prazo
+      };
+
+      return narrativesData.map(n => {
+        const center = centers[n.cluster];
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 0.8;
+        return {
+          ...n,
+          coordinates: [
+            center.x + Math.cos(angle) * distance + (Math.random() - 0.5) * 0.3,
+            center.y + Math.sin(angle) * distance + (Math.random() - 0.5) * 0.3
+          ]
+        };
+      });
+    }
+
+    // Modal functions
+    function openModal(narrative) {
+      const modal = document.getElementById('narrative-modal');
+      const title = document.getElementById('modal-title');
+      const body = document.getElementById('modal-body');
+      
+      title.innerHTML = `<span style="color: ${clusterColors[narrative.cluster]}">●</span> ${narrative.id} - ${clusterNames[narrative.cluster]}`;
+      body.innerHTML = `
+        <div style="background: var(--bg-tertiary); border-left: 4px solid ${clusterColors[narrative.cluster]}; padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 1rem;">
+          <p style="font-style: italic; font-size: 1.1rem; line-height: 1.7; margin: 0;">${narrative.text}</p>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary);">
+          <span>— ${narrative.source}</span>
+          <span style="font-family: monospace; font-size: 0.85rem; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 4px;">
+            Confiança: ${(narrative.prob * 100).toFixed(1)}%
+          </span>
+        </div>
+      `;
+      
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('narrative-modal').classList.remove('active');
+    }
+
+    // Close modal on overlay click
+    document.getElementById('narrative-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Initialize Scatter Plot
+    function initScatterPlot() {
+      const container = document.getElementById('scatter-container');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      const margin = { top: 40, right: 300, bottom: 60, left: 60 };
+      
+      const svg = d3.select('#scatter-container')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+      const data = generateCoordinates();
+
+      // Scales
+      const xExtent = d3.extent(data, d => d.coordinates[0]);
+      const yExtent = d3.extent(data, d => d.coordinates[1]);
+      
+      const xScale = d3.scaleLinear()
+        .domain([xExtent[0] - 0.5, xExtent[1] + 0.5])
+        .range([margin.left, width - margin.right]);
+
+      const yScale = d3.scaleLinear()
+        .domain([yExtent[0] - 0.5, yExtent[1] + 0.5])
+        .range([height - margin.bottom, margin.top]);
+
+      // Tooltip
+      const tooltip = d3.select('#scatter-tooltip');
+
+      // Zoom behavior
+      const zoom = d3.zoom()
+        .scaleExtent([0.5, 5])
+        .on('zoom', (event) => {
+          const newX = event.transform.rescaleX(xScale);
+          const newY = event.transform.rescaleY(yScale);
+          
+          points.attr('cx', d => newX(d.coordinates[0]))
+                .attr('cy', d => newY(d.coordinates[1]));
+        });
+
+      svg.call(zoom);
+
+      // Grid lines
+      const gridGroup = svg.append('g').attr('class', 'grid');
+      
+      // X grid
+      gridGroup.selectAll('.x-grid')
+        .data(xScale.ticks(10))
+        .enter()
+        .append('line')
+        .attr('class', 'x-grid')
+        .attr('x1', d => xScale(d))
+        .attr('x2', d => xScale(d))
+        .attr('y1', margin.top)
+        .attr('y2', height - margin.bottom)
+        .attr('stroke', '#334155')
+        .attr('stroke-width', 0.5)
+        .attr('opacity', 0.3);
+
+      // Y grid
+      gridGroup.selectAll('.y-grid')
+        .data(yScale.ticks(10))
+        .enter()
+        .append('line')
+        .attr('class', 'y-grid')
+        .attr('x1', margin.left)
+        .attr('x2', width - margin.right)
+        .attr('y1', d => yScale(d))
+        .attr('y2', d => yScale(d))
+        .attr('stroke', '#334155')
+        .attr('stroke-width', 0.5)
+        .attr('opacity', 0.3);
+
+      // Points
+      const points = svg.selectAll('.scatter-point')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('class', 'scatter-point')
+        .attr('cx', d => xScale(d.coordinates[0]))
+        .attr('cy', d => yScale(d.coordinates[1]))
+        .attr('r', d => 4 + d.prob * 10)  // Size based on probability
+        .attr('fill', d => clusterColors[d.cluster])
+        .attr('opacity', 0.85)
+        .attr('stroke', '#0f172a')
+        .attr('stroke-width', 1);
+
+      // Interactions
+      points.on('mouseover', function(event, d) {
+        d3.select(this)
+          .attr('stroke', '#fff')
+          .attr('stroke-width', 3)
+          .attr('r', 4 + d.prob * 10 + 3);
+
+        tooltip.html(`
+          <div class="cluster-label">Cluster ${d.cluster}: ${clusterNames[d.cluster]}</div>
+          <div class="narrative-text">"${d.text.substring(0, 120)}${d.text.length > 120 ? '...' : ''}"</div>
+          <div class="narrative-source">— ${d.source}</div>
+          <div class="confidence">Confiança: <strong>${(d.prob * 100).toFixed(1)}%</strong></div>
+        `)
+        .style('left', (event.clientX + 15) + 'px')
+        .style('top', (event.clientY - 10) + 'px')
+        .classed('visible', true);
+      })
+      .on('mousemove', function(event) {
+        tooltip
+          .style('left', (event.clientX + 15) + 'px')
+          .style('top', (event.clientY - 10) + 'px');
+      })
+      .on('mouseout', function(event, d) {
+        d3.select(this)
+          .attr('stroke', '#0f172a')
+          .attr('stroke-width', 1)
+          .attr('r', 4 + d.prob * 10);
+        
+        tooltip.classed('visible', false);
+      })
+      .on('click', function(event, d) {
+        openModal(d);
+      });
+
+      // Legend
+      const legend = d3.select('#scatter-legend');
+      
+      legend.append('div')
+        .attr('class', 'legend-title')
+        .text('Clusters');
+
+      Object.keys(clusterNames).forEach(clusterId => {
+        const item = legend.append('div')
+          .attr('class', 'legend-item');
+        
+        item.append('div')
+          .attr('class', 'legend-color')
+          .style('background-color', clusterColors[clusterId]);
+        
+        const count = narrativesData.filter(n => n.cluster == clusterId).length;
+        item.append('div')
+          .attr('class', 'legend-text')
+          .text(`C${clusterId}: ${clusterNames[clusterId]} (${count})`);
+
+        // Highlight on hover
+        item.on('mouseenter', function() {
+          points.style('opacity', d => d.cluster == clusterId ? 1 : 0.1);
+        }).on('mouseleave', function() {
+          points.style('opacity', 0.85);
+        });
+      });
+
+      // Axis labels
+      svg.append('text')
+        .attr('x', width / 2)
+        .attr('y', height - 15)
+        .attr('text-anchor', 'middle')
+        .style('fill', '#94a3b8')
+        .style('font-size', '12px')
+        .text('UMAP Dimension 1');
+
+      svg.append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', -height / 2)
+        .attr('y', 20)
+        .attr('text-anchor', 'middle')
+        .style('fill', '#94a3b8')
+        .style('font-size', '12px')
+        .text('UMAP Dimension 2');
+    }
+
+    // Render collapsible clusters
+    function renderClusters() {
+      const container = document.getElementById('clusters-container');
+      
+      Object.keys(clusterNames).forEach(clusterId => {
+        const clusterNarratives = narrativesData.filter(n => n.cluster == clusterId);
+        const color = clusterColors[clusterId];
+        
+        const section = document.createElement('div');
+        section.className = 'cluster-section';
+        
+        section.innerHTML = `
+          <div class="cluster-header" onclick="toggleCluster(${clusterId})">
+            <div class="cluster-title-section">
+              <div class="cluster-color-indicator" style="background-color: ${color}"></div>
+              <div class="cluster-title-text">
+                <h3>Cluster ${clusterId}: ${clusterNames[clusterId]}</h3>
+                <span>${clusterNarratives.length} narrativas</span>
+              </div>
+            </div>
+            <div class="cluster-toggle" id="toggle-${clusterId}">▼</div>
+          </div>
+          <div class="cluster-content" id="content-${clusterId}">
+            ${clusterNarratives.map(n => `
+              <div class="narrative-card" style="border-left-color: ${color}" onclick="openModalFromId('${n.id}')">
+                <div class="narrative-text">"${n.text.substring(0, 200)}${n.text.length > 200 ? '...' : ''}"</div>
+                <div class="narrative-source">
+                  <span>— ${n.source}</span>
+                  <span class="narrative-id">${n.id} | ${(n.prob * 100).toFixed(0)}%</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        container.appendChild(section);
+      });
+    }
+
+    function toggleCluster(clusterId) {
+      const content = document.getElementById(`content-${clusterId}`);
+      const toggle = document.getElementById(`toggle-${clusterId}`);
+      const header = toggle.closest('.cluster-header');
+      
+      content.classList.toggle('expanded');
+      toggle.classList.toggle('expanded');
+      header.classList.toggle('active');
+    }
+
+    function openModalFromId(id) {
+      const narrative = narrativesData.find(n => n.id === id);
+      if (narrative) openModal(narrative);
+    }
+  </script>
+</body>
+
+</html>
